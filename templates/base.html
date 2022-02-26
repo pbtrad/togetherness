@@ -13,30 +13,45 @@
     {% endblock %}
     {% block corejs %}
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <!--Font Awesome kit-->
+    <script src="https://kit.fontawesome.com/3af9543e24.js" crossorigin="anonymous"></script>
     <script src="static/js/main.js"></script>
     {% endblock %}
     <title>Togetherness {% block extra_title %}{% endblock %}</title>
 </head>
 <body>
-    <header>
-        <div class="logo">
-            <a href="base.html">
-            <img src="../staticfiles/admin/img/togetherness-logo.svg" alt="togetherness logo">
-            </a>
-        </div>
-        <!--Navigation Start-->
-        <nav>
-            <ul class="nav-item"><a href="../user_profile/templates/user_profile/login.html">Log in</a></ul>
-            <ul class="nav-item"><a href="{% url 'register' %}">Register</a></ul>
-            <ul class="nav-item"><a href="../user_profile/templates/user_profile/events.html">Events</a></ul>
-        </nav>
-        <!--Navigation End-->
+    <!--My start-->
+    <!-- Image and text -->
+    <nav class="navbar navbar-light bg-light">
+        <a class="navbar-brand" href="base.html">
+            <img src="../staticfiles/admin/img/togetherness-logo.svg" width="250" height="60" class="d-inline-block align-top" alt="togetherness logo">
+        </a>
+        
+        <ul class="nav justify-content-end">
+            <li class="nav-item">
+              <a class="nav-link active" href="../user_profile/templates/user_profile/login.html">Log in</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'register' %}">Register</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="../user_profile/templates/user_profile/events.html">Events</a>
+            </li>
+          </ul>
+    </nav>
+    <!--My end-->
     </header>
+
+
+
+
+    
 
     <div class="container">
         {%block content%}
         {%endblock%}
     </div>
+
 <!--Footer Start-->
 <footer>
     <div class="socials">
@@ -49,15 +64,59 @@
             </ul>
         </nav>
     </div>
-    <div class="contact">
-        <h2><a href="../user_profile/templates/user_profile/contact.html">Contact Us!</a></h2>
-    </div>
-    <div class="about">
-        <h2><a href="../user_profile/templates/user_profile/about-us.html">About Us!</a></h2>
-    </div>
+    
 </footer>
 
 <!--Footer End-->
+
+<!--My footer-->
+<footer class="text-center text-white" style="background-color: #f1f1f1;">
+
+    <div class="contact">
+        <h2 class="footer-h2"><a href="../user_profile/templates/user_profile/contact.html">Contact Us!</a></h2>
+    </div>
+    <div class="about">
+        <h2 class="footer-h2"><a href="../user_profile/templates/user_profile/about-us.html">About Us!</a></h2>
+    </div>
+    <!-- Grid container -->
+    <div class="container pt-1">
+        <h2 class="footer-h2">Follow us!</h2>
+      <!-- Section: Social media -->
+      <section class="mb-4">
+        <!-- Facebook -->
+        <a class="btn btn-link btn-floating btn-lg text-dark m-1" href="#!" role="button" data-mdb-ripple-color="dark">
+          <i class="fab fa-facebook-f"></i>
+        </a>
+  
+        <!-- Twitter -->
+        <a class="btn btn-link btn-floating btn-lg text-dark m-1" href="#!" role="button" data-mdb-ripple-color="dark">
+          <i class="fab fa-twitter"></i>
+        </a>
+  
+        <!-- Instagram -->
+        <a class="btn btn-link btn-floating btn-lg text-dark m-1" href="#!" role="button" data-mdb-ripple-color="dark">
+          <i class="fab fa-instagram"></i>
+        </a>
+  
+        <!-- Github -->
+        <a class="btn btn-link btn-floating btn-lg text-dark m-1" href="#!" role="button" data-mdb-ripple-color="dark">
+            <i class="fab fa-github"></i>
+        </a>
+      </section>
+      <!-- Section: Social media -->
+    </div>
+    <!-- Grid container -->
+  
+    <!-- Copyright -->
+    <div class="text-center text-dark p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+      © 2022 Copyright:
+      <a class="text-dark" href="https://mdbootstrap.com/">Together Hackathon</a>
+    </div>
+    <!-- Copyright -->
+  </footer>
+
+
+<!--My end-->
 
 </body>
 </html>
