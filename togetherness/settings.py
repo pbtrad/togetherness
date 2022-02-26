@@ -101,7 +101,9 @@ ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
 ACCOUNT_SIGNUP_EMAIL_ENTER_TWICE = True
 ACCOUNT_USERNAME_MIN_LENGTH = 4
 LOGIN_URL = '/accounts/login/'
-LOGIN_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = '/success'
+
+CSRF_TRUSTED_ORIGINS = ['https://togetherness-dating.herokuapp.com/', 'https://8000-anag0307-togetherness-dgcfq49yarp.ws-eu34xl.gitpod.io', 'http://127.0.0.1:8000/']
 
 WSGI_APPLICATION = 'togetherness.wsgi.application'
 
