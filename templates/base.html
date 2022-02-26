@@ -17,21 +17,46 @@
     <title>Togetherness {% block extra_title %}{% endblock %}</title>
 </head>
 <body>
-    <h1>Togetherness</h1>
-    <!--Navigation Start-->
-    <nav>
-        <ul class="nav-item"><a href="../user_profile/templates/user_profile/login.html">Log in</a></ul>
-        <ul class="nav-item"><a href="../user_profile/templates/user_profile/register.html">Log in</a></ul>
-        <ul class="nav-item"><a href="../user_profile/templates/user_profile/events.html">Log in</a></ul>
-    </nav>
-    <!--Navigation End-->
+    <header>
+        <div class="logo">
+            <a href="base.html">
+            <img src="../staticfiles/admin/img/togetherness-logo.svg" alt="">
+            </a>
+        </div>
+        <!--Navigation Start-->
+        <nav>
+            <ul class="nav-item"><a href="../user_profile/templates/user_profile/login.html">Log in</a></ul>
+            <ul class="nav-item"><a href="../user_profile/templates/user_profile/register.html">Register</a></ul>
+            <ul class="nav-item"><a href="../user_profile/templates/user_profile/events.html">Events</a></ul>
+        </nav>
+        <!--Navigation End-->
+    </header>
+    
     <div class="container">
         {%block content%}
         {%endblock%}
     </div>
 <!--Footer Start-->
-
+<footer>
+    <div class="socials">
+        <h2>Follow us!</h2>
+        <nav class="footer-nav-socials">
+            <ul class="social-icons">
+                <li class="social-link"><a href="https://www.facebook.com" target="_blank"><i class="fa-brands fa-facebook-square"></i></a></li>
+                <li class="social-link"><a href="https://www.twitter.com" target="_blank"><i class="fa-brands fa-twitter-square"></i></a></li>
+                <li class="social-link"><a href="https://www.instagram.com" target="_blank"><i class="fa-brands fa-instagram-square"></i></a></li>
+            </ul>
+        </nav>
+    </div>
+    <div class="contact">
+        <h2><a href="../user_profile/templates/user_profile/contact.html">Contact Us!</a></h2>
+    </div>
+    <div class="about">
+        <h2><a href="../user_profile/templates/user_profile/about-us.html">About Us!</a></h2>
+    </div>
+</footer>
 <!--Footer End-->
 
+<script src="https://kit.fontawesome.com/b214ff1f30.js" crossorigin="anonymous"></script>
 </body>
 </html>
