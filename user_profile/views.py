@@ -3,6 +3,7 @@ from django.contrib import auth
 from user_profile.forms import UserRegistrationForm
 from django.contrib import messages
 
+
 def index(request):
     return render(request,'base.html')
 
