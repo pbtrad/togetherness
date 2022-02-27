@@ -1,7 +1,7 @@
 from django.forms import modelformset_factory
 from django.shortcuts import render, redirect, reverse
 from django.contrib import auth
-from user_profile.forms import UserRegistrationForm, ProfileImageForm, ProfileForm
+from user_profile.forms import UserRegistrationForm, ProfileImageForm, ProfileForm, UserLoginForm
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from .models import Profile, ProfileImage
@@ -36,14 +36,9 @@ def register(request):
 
 
 def create_profile(request):
-    """
-    Create a formset to allow for multiple profile photos to be uploaded
-    Assistance from
-    https://stackoverflow.com/questions/34006994/how-to-upload-multiple-images-to-a-blog-post-in-django
-    """
+   
     ImageFormSet = modelformset_factory(ProfileImage, form=ProfileImageForm, extra=6, max_num=6, help_texts=None)
     
-    # If user has submitted profile form
     if request.method == "POST":
         profile_form = ProfileForm(request.POST, instance=request.user.profile)
         image_form = ProfileImageForm(request.POST, request.FILES)
@@ -51,20 +46,17 @@ def create_profile(request):
         formset = ImageFormSet(request.POST, request.FILES,
                               queryset=ProfileImage.objects.filter(user_id=request.user.id).all())
         
-        # Update profile and change profile to 'to be approved'
         if profile_form.is_valid() and formset.is_valid():
             instance = profile_form.save(commit=False)
             instance.user_id = request.user.id
             instance.is_verified = 'TO BE APPROVED'
             instance.save()
             
-            # Get images requested to be deleted and delete them
             deleted_images = request.POST.getlist('delete')
             for image in deleted_images:
                 if not image == "None":
                     ProfileImage.objects.get(pk=image).delete()
                     
-            # Save submitted images
             for form in formset:
                 if form.is_valid() and form.has_changed():
                     instance_image = form.save(commit=False)
@@ -88,3 +80,26 @@ def create_profile(request):
     }
         
     return render(request, 'user_profile/create_profile.html', context)    
+
+
+def login(request):
+    if request.user.is_authenticated:
+        return redirect(reverse('index'))
+        
+    if request.method == "POST":
+        login_form = UserLoginForm(request.POST)
+        if login_form.is_valid():
+            user = auth.authenticate(username=request.POST['username'], password=request.POST['password'])
+            if user:
+                messages.success(request, "Logged in successfully")
+                auth.login(user=user, request=request)
+                return redirect(reverse('index'))
+            else: 
+                messages.error(request, "Username or password incorrect")
+    else:
+        login_form = UserLoginForm()
+            
+    context = {
+        'login_form':login_form
+    }
+    return render(request, 'login.html', context)
