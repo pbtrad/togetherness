@@ -1,44 +1,53 @@
-{% extends 'base.html' %} {% load static %} {% block content %}
-<form class="text-center vh-100 w-50 mx-auto" method="POST" enctype="multipart/form-data">
-  {% csrf_token %}
-<div class="container">
-  <h3>Complete the information about yourself below</h3>
-  <div class="container border">
-    
-      <div class="form-group">
-        <label for="userGender">Gender</label>
-        <input
-          type="text"
-          class="form-control"
-          id="userGender"
-          aria-describedby="userGenderInformation"
-        />
+{% load static %} {% block content %}
+<section class="profile-card-container">
+  <div class="card-container card-margin-top">
+      <div class="card-form card">
+          <div class="card-form-container">
+              <h3>Profile Details</h3>
+              <hr>
+              <p class="card-form-subtitle">Customise your public profile</p>
+              <p class="card-form-description">This is your opportunity to let your personality shine. A well crafted profile can increase your engagement 4x so try to make it an honest expression of who you are!</p>
+              <form class="create-profile-form standard-form" method="POST" enctype="multipart/form-data">
+                  {% csrf_token %} {{ profile_form }}
+                  <!--Profile photos form-->
+                  <label>Profile Photos: </label> {{ formset.management_form }}
+                  <div class="profile-form-container">
+                      {% for form in formset %}
+                      <div id="field_{{form.id.id_for_label}}" class="profile-photo-container">
+
+                          <div {% if not form.initial.image %}style="display: none;" {% endif %} class="profile-delete-icon-container">
+                              <i onclick="delete_profile_photo( event, 'field_{{form.id.id_for_label}}' )" class="far fa-trash-alt"></i>
+                          </div>
+                          {{form}}
+                          <div class="profile-photo-overlay">
+                              <div class="profile-icon-container-absolute">
+                                  <div class="profile-icon-container-flex">
+                                      <i class="fas fa-plus"></i>
+                                  </div>
+                              </div>
+                              {% if form.initial.image %}
+                              <div class="profile-photo-image" style="background-image: url({{form.initial.image.url}})"></div>
+                              {% else %}
+                              <div class="profile-photo-image" style="background-image: none"></div>
+                              {% endif %}
+                          </div>
+
+                          {% for hidden in form %} {% if not 'image' in hidden.auto_id %}
+                          <input hidden class="delete-hidden-input" type="checkbox" name="delete" value="{{ hidden.value }}"> {% endif %} {% endfor %}
+
+                      </div>
+                      {% endfor %}
+                  </div>
+                  <div class="standard-form-submit">
+                      <input type="submit" value="UPDATE" class="submit-wide submit-success" name="message_submit">
+                  </div>
+              </form>
+          </div>
       </div>
-      <div class="form-group">
-        <label for="userLocation">Location</label>
-        <input
-          type="text"
-          class="form-control"
-          id="userLocation"
-          aria-describedby="userLocationInformation"
-        />
-      </div>
-      <div class="form-group">
-        <label for="whatAreYouLookingFor">What are you looking for?</label>
-        <select class="form-control" id="whatAreYouLookingFor">
-          <option>Love</option>
-          <option>Friendship</option>
-          <option>Companionship</option>
-        </select>
-      </div>
-      <div class="custom-file">
-        <label class="custom-file-label" for="addPicture"
-          >Add your pictures</label
-        >
-        <input type="file" class="custom-file-input" id="addPicture" />
-      </div>
-    
   </div>
- </div>
- </form>
+</section>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/datepicker/0.6.5/datepicker.min.js" integrity="sha256-/7FLTdzP6CfC1VBAj/rsp3Rinuuu9leMRGd354hvk0k=" crossorigin="anonymous"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC8CKdpcMMIDq0BZ7x7DMbH_71XpVH4HWo&libraries=places&callback=initAutocomplete" async defer></script>
 {% endblock %}

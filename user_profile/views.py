@@ -64,7 +64,7 @@ def create_profile(request):
                     instance_image.is_verified = False
                     instance_image.save()
 
-            return redirect(reverse('verification_message'))
+            return redirect(reverse('user_profile'))
             
     else:
         profile_form = ProfileForm(instance=request.user.profile)
@@ -80,6 +80,13 @@ def create_profile(request):
     }
         
     return render(request, 'user_profile/create_profile.html', context)    
+
+def user_profile(request):
+    
+    return render(request, 'user_profile/user_profile.html')
+
+
+
 
 
 
