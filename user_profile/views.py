@@ -1,7 +1,7 @@
 from django.forms import modelformset_factory
 from django.shortcuts import render, redirect, reverse
 from django.contrib import auth
-from user_profile.forms import UserRegistrationForm, ProfileImageForm, ProfileForm, UserLoginForm
+from user_profile.forms import UserRegistrationForm, ProfileImageForm, ProfileForm
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from .models import Profile, ProfileImage
@@ -82,24 +82,5 @@ def create_profile(request):
     return render(request, 'user_profile/create_profile.html', context)    
 
 
-def login(request):
-    if request.user.is_authenticated:
-        return redirect(reverse('index'))
-        
-    if request.method == "POST":
-        login_form = UserLoginForm(request.POST)
-        if login_form.is_valid():
-            user = auth.authenticate(username=request.POST['username'], password=request.POST['password'])
-            if user:
-                messages.success(request, "Logged in successfully")
-                auth.login(user=user, request=request)
-                return redirect(reverse('index'))
-            else: 
-                messages.error(request, "Username or password incorrect")
-    else:
-        login_form = UserLoginForm()
-            
-    context = {
-        'login_form':login_form
-    }
-    return render(request, 'login.html', context)
+
+

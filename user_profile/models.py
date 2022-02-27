@@ -59,7 +59,6 @@ class Profile(models.Model):
         ('SEPARATED', 'Separated')
     )
     EDUCATION = (
-    ('HIGH SCHOOL', 'High School'),
     ('COLLEGE', 'College'),
     ('BACHELORS DEGREE', 'Bachelors Degree'),
     ('MASTERS', 'Masters'),
@@ -79,8 +78,6 @@ class Profile(models.Model):
     looking_for = models.CharField(choices=LOOKING_FOR, default='BOTH', blank=False, max_length=6)
     children = models.BooleanField(default=False)
     location = models.CharField(max_length=100, default='', blank=False)
-    citylat = models.DecimalField(max_digits=9, decimal_places=6, default='-2.0180319')
-    citylong = models.DecimalField(max_digits=9, decimal_places=6, default='52.5525525')
     birth_date = models.DateField(null=True, default='1990-01-01', blank=True)
     
     

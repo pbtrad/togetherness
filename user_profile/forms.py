@@ -95,11 +95,8 @@ class ProfileForm(forms.ModelForm):
     
     class Meta:
         model = Profile
-        fields = ( 'bio', 'gender', 'hair_colour', 'hair_length', 'body_type', 'relationship_status', 'looking_for', 'education', 'height', 'children', 'location',  'citylat', 'citylong', 'birth_date')
+        fields = ( 'bio', 'gender', 'hair_colour', 'hair_length', 'body_type', 'relationship_status', 'looking_for', 'education', 'height', 'children', 'location', 'birth_date')
         widgets = {
             'date' : forms.DateInput(attrs={'type':'date'})
         } 
 
-class UserLoginForm(forms.Form):
-    username = forms.CharField()
-    password = forms.CharField(widget=forms.PasswordInput)
