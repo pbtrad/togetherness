@@ -2,6 +2,7 @@ from django.forms import modelformset_factory
 from django.shortcuts import render, redirect, reverse
 from django.contrib import auth
 from user_profile.forms import UserRegistrationForm, ProfileImageForm, ProfileForm
+from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from .models import Profile, ProfileImage
@@ -81,8 +82,9 @@ def create_profile(request):
         
     return render(request, 'user_profile/create_profile.html', context)    
 
+@login_required 
 def user_profile(request):
-    
+   
     return render(request, 'user_profile/user_profile.html')
 
 
