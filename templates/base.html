@@ -16,6 +16,7 @@
     <!--Font Awesome kit-->
     <script src="https://kit.fontawesome.com/3af9543e24.js" crossorigin="anonymous"></script>
     <script src="static/js/main.js"></script>
+    <script src="https://unpkg.com/htmx.org@1.6.1"></script>
     {% endblock %}
     <title>Togetherness {% block extra_title %}{% endblock %}</title>
 </head>
@@ -117,6 +118,10 @@
 
 
 <!--My end-->
-
+<script>
+    document.body.addEventListener('htmx:configRequest', (event) => {
+        event.detail.headers['X-CSRFToken'] = '{{ csrf_token }}';
+    })
+</script>
 </body>
 </html>
