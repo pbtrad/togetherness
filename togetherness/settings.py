@@ -84,6 +84,7 @@ CSRF_TRUSTED_ORIGINS = ['https://togetherness-dating.herokuapp.com/', 'https://8
 
 WSGI_APPLICATION = 'togetherness.wsgi.application'
 
+SITE_ID=1
 
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
