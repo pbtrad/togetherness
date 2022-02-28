@@ -100,3 +100,7 @@ class ProfileForm(forms.ModelForm):
             'date' : forms.DateInput(attrs={'type':'date'})
         } 
 
+class UserLoginForm(forms.Form):
+    username = forms.CharField()
+    password = forms.CharField(widget=forms.PasswordInput)
+
