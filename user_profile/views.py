@@ -109,7 +109,7 @@ def login(request):
 def logout(request):
     auth.logout(request)
     messages.success(request, "You have been logged out")
-    return redirect(reverse('logout'))
+    return redirect(reverse('index'))
 
 @login_required 
 def user_profile(request):
