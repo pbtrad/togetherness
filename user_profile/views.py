@@ -50,7 +50,6 @@ def create_profile(request):
         if profile_form.is_valid() and formset.is_valid():
             instance = profile_form.save(commit=False)
             instance.user_id = request.user.id
-            instance.is_verified = 'TO BE APPROVED'
             instance.save()
             
             deleted_images = request.POST.getlist('delete')
@@ -62,7 +61,6 @@ def create_profile(request):
                 if form.is_valid() and form.has_changed():
                     instance_image = form.save(commit=False)
                     instance_image.user = request.user
-                    instance_image.is_verified = False
                     instance_image.save()
 
             return redirect(reverse('user_profile'))
