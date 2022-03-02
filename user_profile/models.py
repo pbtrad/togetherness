@@ -12,7 +12,7 @@ def image_filename(instance, filename):
     
 class ProfileImage(models.Model):
     user = models.ForeignKey(User, default=None, on_delete=models.CASCADE)
-    image = models.ImageField(upload_to=image_filename, blank=True)
+    image = models.ImageField(upload_to=image_filename, blank=True, null=True)
 
 
 class Profile(models.Model):
