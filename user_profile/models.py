@@ -13,7 +13,6 @@ def image_filename(instance, filename):
 class ProfileImage(models.Model):
     user = models.ForeignKey(User, default=None, on_delete=models.CASCADE)
     image = models.ImageField(upload_to=image_filename, blank=True)
-    is_verified = models.CharField(blank=False, max_length=14)
 
 
 class Profile(models.Model):

@@ -94,6 +94,7 @@ def login(request):
             if user:
                 messages.success(request, "Logged in successfully")
                 auth.login(user=user, request=request)
+                print(auth)
                 return redirect(reverse('user_profile'))
             else: 
                 messages.error(request, "Username or password incorrect")
@@ -113,8 +114,8 @@ def logout(request):
 
 @login_required 
 def user_profile(request):
-   
-    return render(request, 'user_profile/user_profile.html')
+    
+    return render(request, 'user_profile/user_profile.html', {'image':ProfileImage.objects.get(pk = 1)})
 
 
 

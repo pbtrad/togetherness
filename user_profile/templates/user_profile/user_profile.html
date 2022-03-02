@@ -4,11 +4,12 @@
 {% block head_title %}{{ user.username }} | Togetherness{% endblock head_title %}
 
 {% block content %}
-<div class="container-fluid mt-5" id="profileapp">
+<div class="container-fluid mt-5 mb-5" id="profileapp">
   <div class="row">
     <div class="card col-lg-6 offset-lg-3 mb-3">
       <div class="row">
-        <img class="profile-img" src="{{ image.image.url }}" alt="profile avatar"> 
+        {% for image in user.profileimage_set.all %}
+        <img class="img-thumbnail" src="{{ image.image.url }}" alt="profile avatar"> {% endfor %}
         <div class="card-body col-9">
           <h2 class="card-title my-3">{{ user.username }}</h2>
           <small class="text-muted">Last login on: {{ user.last_login }}</small>

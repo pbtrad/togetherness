@@ -1,9 +1,9 @@
+
+
 footer{
-    width: 100%;
-    position: fixed;
-    bottom: 0;
-    left: 0;
+    margin-top:calc(5% + 60px);
 }
+
 
 .footer-h2{
     font-size: 24px;
